@@ -83,10 +83,10 @@ celerybeat-schedule.*
 .env*
 !.env.example*
 .venv
-env/
+env1/
 venv/
 ENV/
-env.bak/
+env1.bak/
 venv.bak/
 # mkdocs documentation
 /site
