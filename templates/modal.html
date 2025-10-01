@@ -82,4 +82,27 @@
         modal.classList.add('hidden');
       }, 150); 
   }
+
+  async function addNewsEntry() {
+    await fetch("{% url 'main:add_news_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#newsForm')),
+    })
+
+    document.getElementById("newsForm").reset();
+    hideModal();
+      
+    // Show toast notification
+    showToast('News added successfully!', '', 'success');
+
+    // Dispatch custom event to notify main.html about new data
+    document.dispatchEvent(new CustomEvent('newsAdded'));
+
+    return false;
+  }
+
+  document.getElementById("newsForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    addNewsEntry();
+  })
 </script>
